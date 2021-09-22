@@ -1,0 +1,136 @@
+﻿<!--
+***************************************************************
+* Name        : Index.cshtml
+* Author      : Tom Sorteberg
+* Created     : 07/18/2020
+* Course      : CIS 169 - C#
+* Version     : 1.0
+* OS          : Windows 10 Pro, Visual Studio Community 2019
+* Copyright   : This is my own original work based on
+*               specifications issued by our instructor
+* Description : This razor file represents the view for an MVC
+*               ASP.NET Core Web Application, which has been prepared
+*               for my final project submission for CIS-169.
+*               This razor view prompts the user to enter 4 numbers
+*               representing a lottery ticket, the numbers are passed
+*               for processing through the model, and then the
+*               randomly winning ticket number displayed, with
+*               a count of the matching numbers.
+* I have not used unauthorized source code, either modified or
+* unmodified. I have not given other fellow student(s) access
+* to my program.
+***************************************************************
+-->
+@model LottoNumbersSorteberg.Models.Lotto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Lottery Numbers</title>
+
+    <style>
+
+        .container {
+            width: 200px;
+            margin: 25px auto;
+            background-color: silver;
+            border: 2px groove black;
+            border-radius: 25px;
+            padding: 25px;
+            font-family: Verdana, Arial, sans-serif;
+        }
+
+        html {
+            background-color:antiquewhite;
+        }
+
+        p {
+            text-align: left;
+        }
+
+        .format {
+            text-align: center;
+        }
+        
+        .error {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h3>Lotto Number Generator</h3>
+        <p>This program will help you validate lottery ticket numbers against randomly generated numbers.  <br><br>Please enter a number between 1-72 in each box and then select, 'submit'.</p>
+        <form asp-action="Index" method="post">
+
+            <div class="format">
+
+                <label asp-for="FirstNumber">First Number:</label>
+                <input asp-for="FirstNumber" /><br>
+                <span class="error" asp-validation-for="FirstNumber"></span>
+
+            </div>
+
+            <div class="format">
+
+                <br><label asp-for="SecondNumber">Second Number:</label>
+                <input asp-for="SecondNumber" /><br>
+                <span class="error" asp-validation-for="SecondNumber"></span>
+
+            </div>
+
+            <div class="format">
+
+                <br><label asp-for="ThirdNumber">Third Number:</label>
+                <input asp-for="ThirdNumber" /><br>
+                <span class="error" asp-validation-for="ThirdNumber"></span>
+
+            </div>
+
+            <div class="format">
+
+                <br><label asp-for="FourthNumber">Fourth Number:</label>
+                <input asp-for="FourthNumber" /><br>
+                <span class="error" asp-validation-for="FourthNumber"></span>
+
+            </div>
+
+            <div class="format">
+
+                <br><label>Winning Number:</label>
+                <input value="@ViewBag.WinningNumber" readonly />
+
+            </div>
+
+            <div class="format">
+
+                <br><label>Numbers Matching:</label>
+                <input value="@ViewBag.NumberMatching.ToString()" readonly />
+
+            </div>
+
+            <div class="format">
+
+                <br><button type="submit">Check Ticket</button>&nbsp;
+                <a asp-action="Index">Clear</a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
